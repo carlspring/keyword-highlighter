@@ -1,0 +1,39 @@
+name: Build Chrome Extension
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🏷️ Set version
+        id: vars
+        run: |
+          VERSION=${GITHUB_SHA::7}
+          ZIP_NAME="ir35-highlighter-${VERSION}.zip"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: 📦 Package Extension
+        run: |
+          mkdir -p dist
+          zip -r "dist/${{ steps.vars.outputs.zip_name }}" \
+            manifest.json \
+            content.js \
+            styles.css \
+            README.md \
+            ir35-highlight-screenshot.png
+
+      - name: ☁️ Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.vars.outputs.zip_name }}
+          path: dist/${{ steps.vars.outputs.zip_name }}

@@ -1,0 +1,17 @@
+.red-highlight {
+  background-color: red;
+  color: ghostwhite;
+  font-weight: bold;
+}
+
+.green-highlight {
+  background-color: green;
+  color: ghostwhite;
+  font-weight: bold;
+}
+
+.security-clearance-highlight {
+  background-color: purple;
+  color: ghostwhite;
+  font-weight: bold;
+}

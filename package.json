@@ -1,0 +1,27 @@
+{
+  "name": "ir35-highlighter",
+  "version": "1.0.0",
+  "description": "A keyword highlighter extension.",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlspring/ir35-highlighter.git"
+  },
+  "author": "Martin Todorov",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/carlspring/ir35-highlighter/issues"
+  },
+  "homepage": "https://github.com/carlspring/ir35-highlighter#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.6.0",
+    "@eslint/js": "^9.24.0",
+    "@eslint/json": "^0.11.0",
+    "@eslint/markdown": "^6.3.0",
+    "eslint": "^9.24.0",
+    "globals": "^16.0.0"
+  }
+}

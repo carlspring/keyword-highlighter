@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Keyword Highlighter",
+  "version": "1.0",
+  "description": "A keyword highlighting extension for Chrome.",
+  "options_page": "options.html",
+  "permissions": ["scripting", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [ "content.js",
+              "options.js",
+              "mark.min.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

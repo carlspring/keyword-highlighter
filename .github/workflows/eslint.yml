@@ -1,0 +1,44 @@
+name: ESLint
+
+on:
+  push:
+    paths:
+      - '**.js'
+      - 'manifest.json'
+      - '.github/workflows/eslint.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - 'manifest.json'
+      - '.github/workflows/eslint.yml'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install ESLint and SARIF formatter
+        run: |
+          npm install eslint --save-dev
+          npm install @microsoft/eslint-formatter-sarif --save-dev
+
+      - name: Lint code and generate SARIF
+        run: |
+          npx eslint content.js -f @microsoft/eslint-formatter-sarif -o eslint-results.sarif
+
+      - name: Upload SARIF to GitHub Advanced Security
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif
