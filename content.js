@@ -45,6 +45,9 @@
         "Permanent position": "red-highlight",
         "Permanent role": "red-highlight",
         "Permanent": "red-highlight",
+        "Salary up to": "red-highlight",
+        "Salary to": "red-highlight",
+        "Salary": "red-highlight",
         "Competitive salary": "red-highlight",
         "BPSS": "security-clearance-highlight",
         "Security Clearance": "security-clearance-highlight",
@@ -55,10 +58,11 @@
         "DV Cleared": "security-clearance-highlight"
     };
 
-    const termToClassMap = Object.entries(highlightTerms).reduce((acc, [term, className]) => {
-        acc[term.toLowerCase()] = className;
-        return acc;
-    }, {});
+    const termRegexes = Object.entries(highlightTerms).map(([term, className]) => {
+        const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+        return { regex, className };
+    });
 
     function highlightTextNode(node) {
         try {
@@ -71,15 +75,11 @@
             }
 
             const text = node.nodeValue;
-            const lowerText = text.toLowerCase();
             let newHTML = text;
             let modified = false;
 
-            for (const [termLower, className] of Object.entries(termToClassMap)) {
-                const escaped = termLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
-
-                if (regex.test(lowerText)) {
+            for (const { regex, className } of termRegexes) {
+                if (regex.test(newHTML)) {
                     newHTML = newHTML.replace(regex, `<mark class="${className}">$1</mark>`);
                     modified = true;
                 }
