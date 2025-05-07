@@ -11,7 +11,8 @@
         "monster.co.uk",
         "reed.co.uk",
         "offpayroll.org.uk",
-        "totaljobs.com"
+        "totaljobs.com",
+        "upwork.com"
     ];
 
     const currentHost = window.location.hostname.toLowerCase();
@@ -29,6 +30,7 @@
         "Via umbrella": "red-highlight",
         "Umbrella": "red-highlight",
         "Outside IR35": "green-highlight",
+        "Contract": "green-highlight",
         "Remote work": "green-highlight",
         "100% Remote": "green-highlight",
         "Fully remote": "green-highlight",
@@ -66,11 +68,10 @@
 
     function highlightTextNode(node) {
         try {
-            if (
-                !node.nodeValue ||
-                node.parentNode.querySelector("mark") ||
-                node.parentNode.nodeType !== Node.ELEMENT_NODE
-            ) {
+            if (!node.nodeValue ||
+                node.parentNode.nodeType !== Node.ELEMENT_NODE ||
+                node.parentNode.closest("mark") ||
+                node.parentNode.closest("input, textarea, [contenteditable='true'], [contenteditable='']")) {
                 return;
             }
 
@@ -91,7 +92,7 @@
                 node.parentNode.replaceChild(span, node);
             }
         } catch (e) {
-            console.warn("[IR35 Highlighter] Error in highlightTextNode:", e);
+            console.warn("[Keyword Highlighter] Error in highlightTextNode:", e);
         }
     }
 

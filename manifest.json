@@ -15,14 +15,19 @@
       "run_at": "document_idle"
     }
   ],
+  "action": {
+    "default_icon": {
+      "16": "resources/images/icons/icon-16x16.png",
+      "32": "resources/images/icons/icon-32x32.png",
+      "48": "resources/images/icons/icon-48x48.png",
+      "128": "resources/images/icons/icon-128x128.png"
+    },
+    "default_title": "Keyword Highlighter"
+  },
   "icons": {
     "16": "resources/images/icons/icon-16x16.png",
     "32": "resources/images/icons/icon-32x32.png",
     "48": "resources/images/icons/icon-48x48.png",
     "128": "resources/images/icons/icon-128x128.png"
-  },
-  "action": {
-    "default_icon": "resources/images/icons/icon.svg",
-    "default_title": "Keyword Highlighter"
   }
 }
