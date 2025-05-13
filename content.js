@@ -2,6 +2,7 @@
     const allowedHosts = [
         "adzuna.co.uk",
         "cwjobs.co.uk",
+        "cv-library.co.uk",
         "hackajob.com",
         "indeed.com",
         "indeed.co.uk",
