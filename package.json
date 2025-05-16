@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/carlspring/ir35-highlighter#readme",
   "devDependencies": {
-    "@eslint/css": "^0.7.0",
+    "@eslint/css": "^0.8.1",
     "@eslint/js": "^9.24.0",
     "@eslint/json": "^0.12.0",
     "@eslint/markdown": "^6.4.0",
